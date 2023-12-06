@@ -40,7 +40,7 @@ Changes the brightness value of a screen, intended use being laptops.
 
 TODO: Pass through directory as to not be hardcoded
 
-`./adjust-brightness $+/-
+`./adjust-brightness $+/-`
 
 ## backup.py
 
