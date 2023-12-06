@@ -1,0 +1,14 @@
+#!/bin/bash
+
+wget -q --spider https://gentoo.org/
+
+if [ $? -eq 0 ]; then
+    echo "Online"
+else
+    # Backup
+    wget -q --spider https://google.com/
+    if [ $? -eq 0 ]; then
+    	echo "Online"
+    fi
+    echo "Offline"
+fi

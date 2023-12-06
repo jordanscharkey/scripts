@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Clear the screen
+clear
+
+# Start a subshell for all echos to be piped to less
+(
+
+    # HEADER
+    width=$(tput cols)    
+    first_command="Schark's DWM Config"
+    second_command="=========================="
+    text_length=${#first_command}
+    text2_length=${#second_command}
+    padding=$(( (width - text_length) / 2 ))
+    padding2=$(( (width - text2_length) / 2 ))
+    printf "%${padding}s%s\n" "" "$first_command"
+    printf "%${padding2}s%s\n" "" "$second_command"
+    echo ""
+    echo -e "Here's a shortlist of the (sometimes convoluted) keybinds and shortcuts for my DWM config. Includes sections regarding window navigation and management, executing programs, list of preferred installations, and performing system actions all from the keyboard. This is NOT an automatically populated list, if any discrepancies are found please check the dwm/config.h file containing the up-to-date shortcuts and update acordingly. This file is usuallyi stored in /home/schark/program-files/suckless/dwm/."
+    echo ""
+    echo -e "Quick note on keybind syntax- a keybind written as \e[1m<Alt-[J/K]>\e[0m indicates that the ALT key must be pressed at the same time as either J or K for the listed effects to take place."
+    echo ""
+    echo -e "To close this window at any time press \e[1m<q>\e[0m, or use the \e[1m<Alt-Shift-Q>\e[0m keybind."
+    echo ""
+    echo ""
+
+    # NAVIGATION
+    nav_header="[Navigation & Management]"
+    text_length=${#nav_header}
+    padding=$(( (width - text_length) / 2 ))
+    printf "%${padding}s%s\n" "" "$nav_header"
+    echo ""
+    echo -e "\e[1m<Alt-[J/K]>\e[0m - Change the focus between the different windows on a screen depending on level of priority (typically left->right, up->down). \e[1mJ\e[0m will move up the priority list, while \e[1mK\e[0m will move down the priority list. You can identify the focused window based on the border highlights of each window."
+    echo ""
+    echo -e "\e[1m<Alt-[,/.]>\e[0m - Switch between different monitors left or right, with the capability of looping around as well (i.e, switching left on the leftmost monitor will move you to the rightmost monitor). You can indentify the current monitor based on the highlighted title bar on the bottom of the screen."
+    echo ""
+    echo -e "\e[1m<Alt-Shift-[,/.]>\e[0m - Move the highlighted, focused window onto the screen of the left/right monitor."
+    echo ""
+    echo -e "\e[1m<Alt-[1-9, 0]>\e[0m - Change to the desired screen tab of that particular monitor. Each monitor should have 9 unique screen tabs that may hold their own windows. Selecting the \e[1m0\e[0m tab will show all windows across all screen tabs of that monitor."
+    echo ""
+    echo -e "\e[1m<Alt-Shift-[1-9]>\e[0m - Move the highlighted, focused window onto the #'d screen tab of the current monitor."
+    echo ""
+    echo -e "\e[1m<Alt-Shift-Q>\e[0m - Terminate and close the focused window."
+    echo ""
+    echo -e "\e[1m<Alt-Z>\e[0m - Zooms onto the current highlighted window, increasing its priority to #1 of that screen's list."
+    echo ""
+    echo -e "\e[1m<Alt-Shift-Space>\e[0m - Toggle the ability for a window to be classified as 'floating', and therefore residing atop the remaining windows on the screen. Great for temporary visibility, but leads to usability problems with accessing programs under it."
+    echo ""
+    echo -e "\e[1m<Alt-T>\e[0m - Sets the monitor window layout to [T]iling. This is the default configuration that will result in automatic window sizing/placement."
+    echo ""
+    echo -e "\e[1m<Alt-W>\e[0m - Sets the monitor window layout to '[W]indows.' Similar to the Microsoft operating system, windows will float and be uniquely sized. "
+    echo ""
+    echo -e "\e[1m<Alt-[H/L]>\e[0m - For windows sharing a screen, adjust where the divide in priority lies in visibility, either left/right."
+    echo ""
+    echo -e "\e[1m<Alt-Shift-[H/L]>\e[0m - Adjust the location of a window based on the X-axis, either left/right."
+    echo ""
+    echo -e "\e[1m<Alt-Shift-[J/K]>\e[0m - Adjust the location of a window based on the Y-axis, either down/up."
+
+    # Calculate the number of blank lines needed to push the exit prompt to the bottom
+    # Subtract the number of printed lines from the total terminal height
+    num_lines=$(tput lines)   # Get the total number of lines in the terminal
+    num_commands=2            # Replace with the actual number of echo commands above
+    let "padding = num_lines - num_commands - 3"  # 3 is for extra spacing and the exit prompt
+
+    # Print the necessary number of blank lines
+    for ((i=0; i < padding; i++)); do
+        echo ""
+    done
+
+    # Prompt for exiting
+    echo -e "\nPress 'q' to exit the list."
+) | less -R

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    echo "No song amount provided. Defaulting to 10."
+    arg=10
+else
+    arg=$1
+fi
+
+find /mnt/music/ -type f -name "*.*" | shuf -n $arg | mpv --playlist=- --no-audio-display
+
+exit 0
