@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$1" == "+" ] 
+then
+	expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10 > /sys/class/backlight/amdgpu_bl0/brightness
+else
+	expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) -  10 > /sys/class/backlight/amdgpu_bl0/brightness
+fi
+
+exit 0

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+return="$(acpi | sed "s,[^0-9]*,,g")%"
+echo "${return:1}"

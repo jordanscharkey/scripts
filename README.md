@@ -28,6 +28,20 @@ TODO: allow directories to be passed in
 
 `./random-music $NUM_OF_SONGS`
 
+## battery-life
+
+Grabs remaining battery life on laptops, using acpi.
+
+`./battery-life`
+
+## adjust-brightness
+
+Changes the brightness value of a screen, intended use being laptops.
+
+TODO: Pass through directory as to not be hardcoded
+
+`./adjust-brightness $+/-
+
 ## backup.py
 
 Creates file copies on another drive and an external server.
