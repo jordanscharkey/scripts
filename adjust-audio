@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ "$1" == "m" ] 
+then
+    $(pulsemixer --set-volume 0)
+elif [ "$1" == "+" ] 
+then
+    $(pulsemixer --change-volume "$2")
+else
+    $(pulsemixer --change-volume -"$2")
+fi
+
+exit 0
